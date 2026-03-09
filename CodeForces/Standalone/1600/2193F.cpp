@@ -54,19 +54,19 @@ int main(){
         // }
         // cout<<"\n";
         int m = t.size();
-        vector<vector<ll>> dp(2, vector<ll> (m,0));
+        vector<ll> dp(2,0), ndp(2,0);
         //dp[0][i] is the time taken to reach the lowest house
         // dp[1][i] is the time taken to reach the highest house
-        dp[0][0]=0;
-        dp[1][0]=0;
         for(int i=1; i < m; i++){
-            dp[0][i] = min( dp[0][i-1] + dis_l(get<1>(t[i-1]),get<1>(t[i]), get<2>(t[i])) 
-                        ,dp[1][i-1] + dis_l(get<2>(t[i-1]),get<1>(t[i]), get<2>(t[i]))) +
+            ndp[0] = min( dp[0] + dis_l(get<1>(t[i-1]),get<1>(t[i]), get<2>(t[i])) 
+                        ,dp[1] + dis_l(get<2>(t[i-1]),get<1>(t[i]), get<2>(t[i]))) +
                         (get<0>(t[i]) - get<0>(t[i-1]));
-            dp[1][i] = min(dp[0][i-1] + dis_h(get<1>(t[i-1]),get<1>(t[i]), get<2>(t[i])) 
-                        ,dp[1][i-1] + dis_h(get<2>(t[i-1]),get<1>(t[i]), get<2>(t[i]))) +
+            ndp[1] = min(dp[0] + dis_h(get<1>(t[i-1]),get<1>(t[i]), get<2>(t[i])) 
+                        ,dp[1] + dis_h(get<2>(t[i-1]),get<1>(t[i]), get<2>(t[i]))) +
                         (get<0>(t[i]) - get<0>(t[i-1]));
+            dp[0] = ndp[0];
+            dp[1] = ndp[1];
         }
-        cout<<dp[0][m-1]<<"\n";
+        cout<<dp[0]<<"\n";
    }
 }
