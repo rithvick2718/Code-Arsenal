@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-int ohio(int x){
+int sqrt(int x){
     int low = 1;
     int high = 500;
     int mid = low + (high - low)/2;
@@ -23,7 +23,7 @@ int main(){
     while(tt--){
         int n,B,count = 0;
         cin>>n;
-        B = ohio(n);
+        B = sqrt(n);
         vector<int> a(n);
         for(int i=0; i<n; i++) {
             cin>>a[i];
